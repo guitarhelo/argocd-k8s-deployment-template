@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pd
+spec:
+  containers:
+    - image: nginx
+      name: test-container
+      volumeMounts:
+        # 在容器中的路径    node节点上的内容被关联到 pod containr的 /test-pd路径下 exec进入pod容器的路径内可以看到节点上的内容
+        - mountPath: /test-pd
+          name: test-volume
+  volumes:
+    - name: test-volume
+      hostPath:
+        # directory location on host  绑定的节点的文件路径
+        path: /data
+        # this field is optional  此路径类型为必须存在
+        type: Directory
