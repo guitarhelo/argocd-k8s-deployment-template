@@ -25,12 +25,15 @@ spec:
               mountPath: /var/jenkins_home
             - name: docker-sock-volume
               mountPath: /var/run/docker.sock
+              subPath: docker.sock
       volumes:
         - name: jenkins-home
           emptyDir: {}
         - name: docker-sock-volume
-          hostPath:
-            path: /var/run/docker.sock
+          configMap:
+            name: configjenkins
+ #         hostPath:
+ #           path: /var/run/docker.sock
 ---
 apiVersion: v1
 kind: Service
