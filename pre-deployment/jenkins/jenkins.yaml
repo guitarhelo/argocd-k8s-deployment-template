@@ -30,8 +30,8 @@ spec:
           emptyDir: {}
         - name: docker-sock-volume
           hostPath:
-            path:/var/run/docker.sock
-            type:File
+            path: /var/run/docker.sock
+            type: File
 ---
 apiVersion: v1
 kind: Service
